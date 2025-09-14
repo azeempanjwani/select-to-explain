@@ -1,0 +1,51 @@
+{
+  "name": "Explainer",
+  "description": "Highlight text, click Ask, get instant AI explanations. 20 free explanations daily!",
+  "version": "1.0.0",
+  "manifest_version": 3,
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus"
+  ],
+
+  "host_permissions": [
+    "*://*/*",
+    "file://*/*",
+    "https://your-api-domain.com/*"
+  ],
+
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+
+  "commands": {
+    "_execute_action": {                
+      "suggested_key": { "default": "Alt+E" }
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["ui/askButton.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+
+  "options_page": "options/options.html",
+
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+
+  "action": {
+    "default_title": "Explainer - AI Text Explanations",
+    "default_popup": "popup.html"
+  }
+}

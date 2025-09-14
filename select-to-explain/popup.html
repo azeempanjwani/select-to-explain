@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 350px;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+    }
+    
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .logo h1 {
+      margin: 0;
+      color: #10b981;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .status {
+      background: #f0f9ff;
+      border: 1px solid #e0f2fe;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    
+    .usage-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .progress-bar {
+      background: #f3f4f6;
+      border-radius: 4px;
+      height: 8px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      background: #10b981;
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    
+    .auth-form {
+      display: none;
+    }
+    
+    .auth-form.active {
+      display: block;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+      color: #374151;
+    }
+    
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .btn:hover {
+      background: #059669;
+    }
+    
+    .btn:disabled {
+      background: #d1d5db;
+      cursor: not-allowed;
+    }
+    
+    .error {
+      color: #dc2626;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    
+    .success {
+      color: #059669;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 8px;
+      text-align: center;
+    }
+    
+    .user-info {
+      display: none;
+    }
+    
+    .user-info.active {
+      display: block;
+    }
+    
+    .user-email {
+      font-size: 14px;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    
+    .logout-btn {
+      background: #6b7280;
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+    
+    .logout-btn:hover {
+      background: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <h1>Explainer</h1>
+  </div>
+
+  <!-- User Info (shown when logged in) -->
+  <div id="userInfo" class="user-info">
+    <div class="status">
+      <div class="user-email" id="userEmail"></div>
+      <div class="usage-info">
+        <span>Today's usage:</span>
+        <span id="usageCount">0 / 20</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+    
+    <div class="help-text">
+      Select text on any webpage and click the "?" button to get AI explanations!
+    </div>
+    
+    <button class="btn logout-btn" id="logoutBtn">Sign Out</button>
+  </div>
+
+  <!-- Registration Form (shown when not logged in) -->
+  <div id="authForm" class="auth-form active">
+    <div class="status">
+      <strong>Get 20 FREE AI explanations daily!</strong>
+    </div>
+    
+    <form id="registrationForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+        <div class="error" id="emailError"></div>
+      </div>
+      
+      <button type="submit" class="btn" id="registerBtn">
+        Start Using Explainer
+      </button>
+      
+      <div class="success" id="successMessage"></div>
+    </form>
+    
+    <div class="help-text">
+      No spam, just your daily explanation count. Unsubscribe anytime.
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
